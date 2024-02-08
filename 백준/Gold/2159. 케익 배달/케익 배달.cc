@@ -38,7 +38,7 @@ int main() {
 
 	for (int i = 0; i < N; ++i) cin >> pos[i][0] >> pos[i][1];
 
-	cout << min({ sol(0, 0, x, y), sol(0, 1, x, y), sol(0, 2, x, y), sol(0, 3, x, y), sol(0, 4, x, y) });
+	cout << sol(0, 0, x, y);
 
 	//cout << "!";
 }
