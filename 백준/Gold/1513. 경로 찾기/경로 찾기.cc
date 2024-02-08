@@ -2,15 +2,17 @@
 #include<algorithm>
 #include<vector>
 #include<memory.h>
-//#define fastio cin.tie(0)->ios::sync_with_stdio(0); cout.tie(0); setvbuf(stdout, nullptr, _IOFBF, BUFSIZ);
+#define fastio cin.tie(0)->ios::sync_with_stdio(0); cout.tie(0); setvbuf(stdout, nullptr, _IOFBF, BUFSIZ);
 using namespace std;
 using ll = long long;
 
-int n, m, c, dp[52][52][52][52], room[52][52];
+const int MOD = 1e6 + 7;
+
+int n, m, c, flag, dp[52][52][52][52], room[52][52];
 
 int main() {
 
-	//fastio;
+	fastio;
 
 	cin >> n >> m >> c;
 
@@ -24,13 +26,12 @@ int main() {
 
 	for (int i = 1; i <= n; ++i) {
 		for (int j = 1; j <= m; ++j) {
-			int flag;
 			if (room[i][j]) flag = room[i][j];
 			else flag = c;
+
 			for (int k = 0; k <= flag; ++k) {
 				for (int l = 0; l <= k; ++l) {
-					int& ref = dp[i][j][k][l];
-					ref %= 1'000'007;
+					dp[i][j][k][l] %= MOD;
 					if (!room[i + 1][j]) dp[i + 1][j][k][l] += dp[i][j][k][l];
 					if (room[i + 1][j] && (k < room[i + 1][j])) dp[i + 1][j][room[i + 1][j]][l + 1] += dp[i][j][k][l];
 					if (!room[i][j + 1]) dp[i][j + 1][k][l] += dp[i][j][k][l];
@@ -40,16 +41,10 @@ int main() {
 		}
 	}
 
-
 	for (int i = 0; i <= c; ++i) {
-		int flag, mx = 0;
-		if (room[n][m]) flag = room[n][m];
-		else flag = c;
-		for (int j = 0; j <= flag; ++j) {
-			int& ref = dp[n][m][j][i];
- 			mx += dp[n][m][j][i];
-		}
-		cout << mx % 1'000'007 << " ";
+		int mx = 0;
+		for (int j = 0; j <= c; ++j) mx += dp[n][m][j][i];
+		cout << mx % MOD << " ";
 	}
 
 	//cout << "!";
