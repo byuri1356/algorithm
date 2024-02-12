@@ -9,7 +9,7 @@ using ll = long long;
 ll n, k, modNum[16], modDigit[51] = { 1, }, dp[1 << 15][101], bunmo = 1, bunza;
 string s[16];
 
-ll sol(ll bt, ll pv) {
+ll sol(int bt, int pv) {
 
 	ll& ref = dp[bt][pv];
 	if (ref != -1) return ref;
@@ -18,7 +18,7 @@ ll sol(ll bt, ll pv) {
 
 	ref = 0;
 
-	for (ll i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i) {
 		if ((bt & 1 << i) == 0) ref += sol(bt | 1 << i, (pv * modDigit[s[i].size()] + modNum[i]) % k);
 	}
 
@@ -30,9 +30,9 @@ ll gcd(ll a, ll b) {
 	return gcd(b, a % b);
 }
 
-ll getMod(string& s) {
-	ll tmp = 0;
-	for (ll i = 0; i < s.size(); ++i) {
+int getMod(string& s) {
+	int tmp = 0;
+	for (int i = 0; i < s.size(); ++i) {
 		tmp *= 10;
 		tmp += s[i] - '0';
 		tmp %= k;
@@ -47,11 +47,11 @@ int main() {
 	memset(dp, -1, sizeof dp);
 
 	cin >> n;
-	for (ll i = 0; i < n; ++i) cin >> s[i], bunmo *= (i + 1);
+	for (int i = 0; i < n; ++i) cin >> s[i], bunmo *= (i + 1);
 	cin >> k;
 
-	for (ll i = 1; i < 51; ++i) modDigit[i] = modDigit[i - 1] * 10 % k;
-	for (ll i = 0; i < n; ++i) modNum[i] = getMod(s[i]);
+	for (int i = 1; i < 51; ++i) modDigit[i] = modDigit[i - 1] * 10 % k;
+	for (int i = 0; i < n; ++i) modNum[i] = getMod(s[i]);
 
 	bunza =  sol(0, 0);
 
