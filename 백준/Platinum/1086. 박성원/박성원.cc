@@ -14,7 +14,7 @@ ll sol(ll bt, ll pv) {
 	ll& ref = dp[bt][pv];
 	if (ref != -1) return ref;
 
-	if ((1 << n) - 1 == bt) return ref = pv % k == 0;
+	if ((1 << n) - 1 == bt) return ref = pv ? 0 : 1;
 
 	ref = 0;
 
