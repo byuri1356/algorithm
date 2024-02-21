@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-#define fastio cin.tie(0)->ios::sync_with_stdio(0); cout.tie(0); setvbuf(stdout, nullptr, _IOFBF, BUFSIZ);
+#define fastio ios::sync_with_stdio(0); cin.tie(0);
 using namespace std;
 
 int v, e, o, sz, visited[10001], scc[10001];
