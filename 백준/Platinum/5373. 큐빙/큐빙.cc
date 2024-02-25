@@ -24,15 +24,8 @@ void rotate(int s, int d) {
 		copy(&cube[9 * s], &cube[9 * s] + 9, &q1[0][0]);
 
 		for (int j = 0; j < 12; ++j) q[j] = cube[rot[s][j]];
-		for (int j = 0; j < 12; ++j) {
-			cube[rot[s][j]] = q[(j + 3) % 12];
-		}
-
-		for (int j = 0; j < 3; ++j) {
-			for (int k = 0; k < 3; ++k) {
-				cube[9 * s + 3 * j + k] = q1[2 - k][j];
-			}
-		}
+		for (int j = 0; j < 12; ++j) cube[rot[s][j]] = q[(j + 3) % 12];
+		for (int j = 0; j < 3; ++j) for (int k = 0; k < 3; ++k) cube[9 * s + 3 * j + k] = q1[2 - k][j];
 	}
 }
 
