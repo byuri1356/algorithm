@@ -1,12 +1,10 @@
 #include<iostream>
-#include<map>
+#include<numeric>
 #define MOD 10'000'003
 using namespace std;
 using ll = long long;
 
 ll n, dp[52][100'002];
-
-ll gcd(int a, int b) { return b ? gcd(b, a % b) : a; }
 
 int main() {
 
